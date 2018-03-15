@@ -59,9 +59,6 @@ namespace J_LinkMemDump.ViewModel
 
         private string _mSize;
 
-
-
-
         public VarViewModel()
         {
             Output = "Julek";
