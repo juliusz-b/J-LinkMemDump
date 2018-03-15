@@ -22,7 +22,7 @@ namespace J_LinkMemDump.Model
             cmd.StartInfo.CreateNoWindow = true;
             cmd.StartInfo.UseShellExecute = false;
             cmd.Start();
-
+            //nrfjprog --memrd 0x20004534 --n 0x4000
             cmd.StandardInput.WriteLine("ping 8.8.8.8");
             cmd.StandardInput.Flush();
             cmd.StandardInput.Close();
