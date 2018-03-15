@@ -28,6 +28,7 @@ namespace J_LinkMemDump.Model
             cmd.StandardInput.Close();
             cmd.WaitForExit();
 
+            return betweenStrings(text, "KASIA BASIA |DDDD| hkjsfdh","|");
             return cmd.StandardOutput.ReadToEnd();
             //Console.WriteLine(cmd.StandardOutput.ReadToEnd());
            // return cmd.StandardOutput;
@@ -38,5 +39,14 @@ namespace J_LinkMemDump.Model
 
            // return "";
         }
+        public static String betweenStrings(String text, String start, String end)
+        {
+            int p1 = text.IndexOf(start) + start.Length;
+            int p2 = text.IndexOf(end, p1);
+
+            if (end == "") return (text.Substring(p1));
+            else return text.Substring(p1, p2 - p1);
+        }
+
     }
 }
