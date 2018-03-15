@@ -37,6 +37,8 @@ namespace J_LinkMemDump.ViewModel
                 _mAddress = value;
                 OnPropertyChanged();
             }
+
+           
         }
 
         private string _mAddress;

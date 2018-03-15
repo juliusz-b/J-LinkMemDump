@@ -27,8 +27,8 @@ namespace J_LinkMemDump.Model
             cmd.StandardInput.Flush();
             cmd.StandardInput.Close();
             cmd.WaitForExit();
+           // return betweenStrings(cmd.StandardOutput.ReadToEnd(), ".",".");
 
-            return betweenStrings(text, "KASIA BASIA |DDDD| hkjsfdh","|");
             return cmd.StandardOutput.ReadToEnd();
             //Console.WriteLine(cmd.StandardOutput.ReadToEnd());
            // return cmd.StandardOutput;
