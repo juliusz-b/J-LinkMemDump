@@ -1,0 +1,16 @@
+C:\workspace\Predica\J-LinkMemDump\J-LinkMemDump\bin\Debug\J-LinkMemDump.exe.config
+C:\workspace\Predica\J-LinkMemDump\J-LinkMemDump\bin\Debug\J-LinkMemDump.exe
+C:\workspace\Predica\J-LinkMemDump\J-LinkMemDump\bin\Debug\J-LinkMemDump.pdb
+C:\workspace\Predica\J-LinkMemDump\J-LinkMemDump\obj\Debug\J-LinkMemDump.csprojResolveAssemblyReference.cache
+C:\workspace\Predica\J-LinkMemDump\J-LinkMemDump\obj\Debug\J-LinkMemDump_MarkupCompile.cache
+C:\workspace\Predica\J-LinkMemDump\J-LinkMemDump\obj\Debug\J-LinkMemDump_MarkupCompile.lref
+C:\workspace\Predica\J-LinkMemDump\J-LinkMemDump\obj\Debug\J-LinkMemDump.g.resources
+C:\workspace\Predica\J-LinkMemDump\J-LinkMemDump\obj\Debug\J_LinkMemDump.Properties.Resources.resources
+C:\workspace\Predica\J-LinkMemDump\J-LinkMemDump\obj\Debug\J-LinkMemDump.csproj.GenerateResource.Cache
+C:\workspace\Predica\J-LinkMemDump\J-LinkMemDump\obj\Debug\J-LinkMemDump.csproj.CoreCompileInputs.cache
+C:\workspace\Predica\J-LinkMemDump\J-LinkMemDump\obj\Debug\J-LinkMemDump.exe
+C:\workspace\Predica\J-LinkMemDump\J-LinkMemDump\obj\Debug\J-LinkMemDump.pdb
+C:\workspace\Predica\J-LinkMemDump\J-LinkMemDump\obj\Debug\View\App.g.cs
+C:\workspace\Predica\J-LinkMemDump\J-LinkMemDump\obj\Debug\View\MainWindow.g.cs
+C:\workspace\Predica\J-LinkMemDump\J-LinkMemDump\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\workspace\Predica\J-LinkMemDump\J-LinkMemDump\obj\Debug\View\MainWindow.baml
