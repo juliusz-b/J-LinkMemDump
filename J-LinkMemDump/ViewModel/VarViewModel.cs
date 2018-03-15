@@ -6,9 +6,11 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using J_LinkMemDump.Annotations;
 using J_LinkMemDump.Model;
+
 
 namespace J_LinkMemDump.ViewModel
 {
@@ -77,9 +79,7 @@ namespace J_LinkMemDump.ViewModel
             var model = new DumpVar();
             Output = model.GetDataFromJlink(Size, Address);
         }
-
-
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
