@@ -1,52 +1,99 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace J_LinkMemDump.Model
 {
-    internal class DumpVar
+    internal static class DumpVar
     {
-        public DumpVar()
-        {
-        }
-        public string GetDataFromJlink(string size, string legth)
+        public static async Task<string> GetDataFromJlinkAsync(string size, string address)
         {
             //wywolanie komendy jlinka
-            Process cmd = new Process();
-            cmd.StartInfo.FileName = "cmd.exe";
-            cmd.StartInfo.RedirectStandardInput = true;
-            cmd.StartInfo.RedirectStandardOutput = true;
-            cmd.StartInfo.CreateNoWindow = true;
-            cmd.StartInfo.UseShellExecute = false;
+            var cmd = new Process
+            {
+                StartInfo =
+                {
+                    FileName = "cmd.exe",
+                    RedirectStandardInput = true,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true,
+                    UseShellExecute = false
+                }
+            };
+
             cmd.Start();
-            //nrfjprog --memrd 0x20004534 --n 0x4000
-            cmd.StandardInput.WriteLine("ping 8.8.8.8");
+            cmd.StandardInput.WriteLine($"nrfjprog --memrd {address} --n {size}");
             cmd.StandardInput.Flush();
             cmd.StandardInput.Close();
-            cmd.WaitForExit();
-           // return betweenStrings(cmd.StandardOutput.ReadToEnd(), ".",".");
-
-            return cmd.StandardOutput.ReadToEnd();
-            //Console.WriteLine(cmd.StandardOutput.ReadToEnd());
-           // return cmd.StandardOutput;
-
-
-
-
-
-           // return "";
+            //cmd.WaitForExit();
+            var str = await ParseInput(cmd);
+            str = str.Replace(" ", string.Empty);
+            str = SwapBits(str);
+            str = ConvertHex(str);
+            return str;
         }
-        public static String betweenStrings(String text, String start, String end)
+
+        private static async Task<string> ParseInput(Process p)
         {
-            int p1 = text.IndexOf(start) + start.Length;
-            int p2 = text.IndexOf(end, p1);
-
-            if (end == "") return (text.Substring(p1));
-            else return text.Substring(p1, p2 - p1);
+            var ret = "";
+            while (true)
+            {
+                var line = await p.StandardOutput.ReadLineAsync();
+                if (line == null)
+                    return ret;
+                ret += BetweenStrings(line, ":", "|");
+            }
         }
 
+        private static string BetweenStrings(string text, string start, string end)
+        {
+            var p1 = text.IndexOf(start, StringComparison.Ordinal) + start.Length;
+            var p2 = text.IndexOf(end, p1, StringComparison.Ordinal);
+            return p2 == -1 ? "" : text.Substring(p1, p2 - p1);
+        }
+
+        private static string SwapBits(string hexString)
+        {
+            try
+            {
+                var swapped = string.Empty;
+                for (var i = 0; i < hexString.Length; i += 8)
+                {
+                    i--;
+                    swapped += hexString[i + 7];
+                    swapped += hexString[i + 8];
+                    swapped += hexString[i + 5];
+                    swapped += hexString[i + 6];
+                    swapped += hexString[i + 3];
+                    swapped += hexString[i + 4];
+                    swapped += hexString[i + 1];
+                    swapped += hexString[i + 2];
+                    i++;
+                }
+                return swapped;
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+
+            return string.Empty;
+        }
+
+        private static string ConvertHex(string hexString)
+        {
+            try
+            {
+                var ascii = string.Empty;
+                for (var i = 0; i < hexString.Length; i += 2)
+                {
+                    var hs = hexString.Substring(i, 2);
+                    var decval = Convert.ToUInt32(hs, 16);
+                    var character = Convert.ToChar(decval);
+                    ascii += character;
+                }
+                return ascii;
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+
+            return string.Empty;
+        }
     }
 }
